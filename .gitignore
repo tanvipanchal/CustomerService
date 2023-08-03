@@ -1,0 +1,32 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+*.ipr
+.intuitgithookrc
+
+# Mac
+.DS_Store
+
+# ms vscode
+.vscode/
+
+# Maven
+/log/
+target/
+.flattened-pom.xml
+
+# Spring
+/logs/
+
+# OIL
+OILLogs/
+
+# Python
+*.pyc
+

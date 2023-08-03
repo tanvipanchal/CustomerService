@@ -1,0 +1,39 @@
+Project Challenge: Customer Relationship Management (CRM) System API
+
+Description:
+You are tasked with building a Customer Relationship Management (CRM) System API using Java that allows businesses to manage their customer data. The API should provide RESTful HTTP GET and POST methods to retrieve and add customer information in JSON format. You will use various Java data structures (arrays, sets, and maps) to efficiently store and manipulate the customer records.
+
+Requirements:
+
+The CRM System API should be implemented as a Java web application using a lightweight web server like Jetty or embedded Tomcat.
+
+The system should expose the following RESTful endpoints:
+
+GET /customers: Retrieve the list of all customers in the CRM system.
+GET /customers/{id}: Retrieve information about a specific customer based on their unique ID.
+POST /customers: Add a new customer record to the CRM system.
+Each customer record should contain the following information:
+
+Unique ID (auto-generated or provided by the client)
+Name
+Email
+Phone number
+Address
+Notes (additional information about the customer)
+Implement a data store using Java data structures to manage customer records efficiently:
+
+Array: Use an array to store customer records, where each element represents a single customer.
+Set: Utilize a set to ensure that the CRM system does not contain duplicate customer IDs.
+Map: Implement a map to allow fast retrieval of customer records based on their unique ID.
+When adding a new customer (POST request), ensure that the provided ID is unique. If the ID already exists, return an appropriate error response.
+
+Implement data transformation utilities to convert the customer data between JSON format and Java objects.
+
+Additional Considerations:
+
+Implement proper error handling and validation for invalid requests.
+Provide appropriate API documentation using tools like Swagger or OpenAPI to guide developers using the API.
+Consider adding additional features, such as updating customer information (PUT or PATCH requests) and deleting customers (DELETE request).
+Use JSON libraries like Jackson or Gson to handle JSON serialization and deserialization.
+You may use a lightweight web framework like Spring Boot or Javalin to simplify the development process and handle HTTP requests.
+This CRM System API challenge will test your ability to design and implement a real-world RESTful API using Java, handle data using various Java data structures, and perform data transformation between JSON format and Java objects. Ensure that your API is secure, efficient, and user-friendly for businesses to manage their customer data effectively. Happy coding!

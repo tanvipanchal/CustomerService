@@ -1,14 +1,14 @@
 package com.tanvipanchal.CustomerService.controller;
 
 import com.tanvipanchal.CustomerService.model.Customer;
+import com.tanvipanchal.CustomerService.util.Helper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
@@ -35,8 +35,24 @@ public class CustomerController {
                 .body(customerResponse);
     }
 
-    @GetMapping("/")
-    public String hello() {
-        return "Hello World";
+    @GetMapping("/customers")
+    public List<Customer> getAllCustomers() {
+        return Helper.getSampleCustomers();
+    }
+
+    @GetMapping("/customers/{id}")
+    public Customer getCustomerById(final String id) {
+        return Helper.getSampleCustomer();
+    }
+
+    @PatchMapping("/customers")
+    public Customer patchCustomer(@RequestBody Customer c) {
+        System.out.println(c);
+        return c;
+    }
+
+    @DeleteMapping("/customers/{id}")
+    public void deleteCustomer(final String id){
+        System.out.println(id);
     }
 }

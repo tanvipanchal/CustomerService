@@ -7,10 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-import java.util.UUID;
 
 /**
  * @author tpanchal
@@ -19,11 +16,15 @@ import java.util.UUID;
 @RestController
 public class CustomerController {
 
+    private Helper helper = new Helper();
+    int counter = 0;
+
     @PostMapping("/customers")
     public ResponseEntity<Customer> createCustomer(@RequestBody final Customer customer) {
         System.out.print(customer);
+        String customerId = String.valueOf(++counter); //= UUID.randomUUID().toString();
+        helper.createCustomer(customerId, customer);
         Customer customerResponse = new Customer();
-        String customerId = UUID.randomUUID().toString();
         customerResponse.setId(customerId);
         customerResponse.setName(customer.getName());
         customerResponse.setEmail(customer.getEmail());
@@ -37,22 +38,23 @@ public class CustomerController {
 
     @GetMapping("/customers")
     public List<Customer> getAllCustomers() {
-        return Helper.getSampleCustomers();
+        return helper.getAllCustomers();
     }
 
     @GetMapping("/customers/{id}")
-    public Customer getCustomerById(final String id) {
-        return Helper.getSampleCustomer();
+    public Customer getCustomerById(@PathVariable String id) {
+        return helper.getCustomer(id);
     }
 
     @PatchMapping("/customers")
     public Customer patchCustomer(@RequestBody Customer c) {
         System.out.println(c);
-        return c;
+        return helper.patchCustomer(c);
     }
 
     @DeleteMapping("/customers/{id}")
-    public void deleteCustomer(final String id){
+    public List<Customer> deleteCustomer(@PathVariable String id){
         System.out.println(id);
+        return helper.deleteCustomer(id);
     }
 }

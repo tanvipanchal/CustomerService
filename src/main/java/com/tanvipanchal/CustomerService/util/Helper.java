@@ -2,9 +2,7 @@ package com.tanvipanchal.CustomerService.util;
 
 import com.tanvipanchal.CustomerService.model.Customer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author tpanchal
@@ -12,40 +10,32 @@ import java.util.UUID;
 
 public class Helper {
 
-    public static List<Customer> getSampleCustomers() {
-        List<Customer> customers = new ArrayList<>();
-        Customer c1 = new Customer();
-        c1.setId(UUID.randomUUID().toString());
-        c1.setName("Niya");
-        c1.setEmail("Niya@gmail.com");
-        c1.setPhone("+19842784455");
-        c1.setAddress("12399 Brook Street, Chicago, 88123");
-        c1.setNotes("premium customer");
+    private HashMap<String,Customer> customers = new HashMap<>();
 
-        Customer c2 = new Customer();
-        c2.setId(UUID.randomUUID().toString());
-        c2.setName("Lee");
-        c2.setEmail("Lee@gmail.com");
-        c2.setPhone("+19933778989");
-        c2.setAddress("333 lime Street, Las Vegas, 88123");
-        c2.setNotes("VIP customer");
+    public List<Customer> getAllCustomers() {
 
-        customers.add(c1);
-        customers.add(c2);
-
-        return customers;
+        return new ArrayList<>((Collection) customers.values());
     }
 
-    public static Customer getSampleCustomer() {
+    public Customer getCustomer(String id) {
 
-        Customer c1 = new Customer();
-        c1.setId(UUID.randomUUID().toString());
-        c1.setName("Bob");
-        c1.setEmail("bob@gmail.com");
-        c1.setPhone("+19966223390");
-        c1.setAddress("12399 Yard Street, New Jersey, 88123");
-        c1.setNotes("premium customer");
+        return ((Customer) customers.get(id));
+    }
 
-        return c1;
+    public void createCustomer(String id, Customer c) {
+        c.setId(id);
+        customers.put(id, c);
+    }
+
+    public Customer patchCustomer(Customer c){
+        Customer customer = customers.get(c.getId());
+        customer = c;
+        customer.setId(c.getId());
+        return customer;
+    }
+
+    public List<Customer> deleteCustomer(String id){
+        customers.remove(id);
+        return new ArrayList<>((Collection) customers.values());
     }
 }
